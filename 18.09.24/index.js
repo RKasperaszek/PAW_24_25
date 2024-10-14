@@ -1,5 +1,6 @@
-import * as http from 'node:http'
-import * as fs from 'node:fs'
+const http = require('http')
+const fs = require('fs')
+const path = require('path')
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -36,6 +37,16 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             }
         });
+    }
+    else if (url.startsWith("/get_params")) {
+        const params = new URLSearchParams(url.split("?")[1]);
+        console.log(params);
+
+        const fpath = path.join(__dirname, `params_${new Date().getTime()}.json`);
+        fs.writeFile(fpath, JSON.stringify(params), (err, data) => {
+            if (err) throw err;
+        });
+        res.end(JSON.stringify({'ok':'ok'}));
     }
 });
 
