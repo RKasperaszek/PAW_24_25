@@ -9,7 +9,7 @@ const hostname = '127.0.0.1';
 
 const app = express();
 
-const prisma = new prismaClient();
+//const prisma = new prismaClient();
 const conn = mysql.createConnection({
   host: hostname,
   user: 'root'
