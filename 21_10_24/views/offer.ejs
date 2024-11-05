@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/static/style.css' />
+</head>
+    <body>
+
+    <%- include('parts/nav'); %>
+    <div>
+        <h1><%= title %></h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel venenatis arcu. </p>
+        <table>
+            <tr>
+                <th>tytuł</th><th>cena</th>
+            </tr>
+            <tr>
+                <td>stworzenie strony internetowej</td><td>1000zł</td>
+            </tr>
+        </table>
+    </div>
+    <%- include('parts/footer'); %>
+    </body>
+</html>
