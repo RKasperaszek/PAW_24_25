@@ -50,7 +50,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({'ok':'ok'}));
     }
     else {
-        const fpath = path.join('C:/Users/pc/Desktop/paw/PAW_24_25/2.10.24/assets',req.urlm);
+        const fpath = path.join('C:/Users/pc/Desktop/paw/PAW_24_25/2.10.24/assets',req.url);
         fs.access(fpath, fs.constants.F_OK, (err) => {
             if (err) {
                 res.writeHead(404, {'Content-Type': 'application/json'});
