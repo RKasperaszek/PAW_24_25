@@ -1,0 +1,20 @@
+{
+  "name": "4.11.24",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RKasperaszek/PAW_24_25.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "express": "^4.21.1",
+    "http-errors": "^2.0.0",
+    "mysql2": "^3.11.4"
+  }
+}
