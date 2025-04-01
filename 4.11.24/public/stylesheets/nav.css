@@ -1,0 +1,24 @@
+nav {
+    background-color: #6b9180;
+    padding: 10px;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: end;
+}
+nav li{
+    padding-right: 30px;
+}
+
+nav a:visited, nav a {
+    color: white;
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}

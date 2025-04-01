@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
         const category = await prisma.category.create({
             data: {name}
         });
-        res.status(200).send(category);
+        res.render('categories', {title: 'categories', message: null});
     }catch(err){
         res.status(500).send(err.message);
     }
@@ -18,17 +18,17 @@ router.post("/", async (req, res) => {
 
 router.get('/', async (req, res) => {
     const category = await prisma.category.findMany()
-    res.status(200).send(category);
+    res.render('categories', {title: 'categories', message: null});
 })
 
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     const category = await prisma.category.findFirst({where: {id: Number(id)}});
     if (!category) {
-        res.status(404).send('Not found');
+        return res.status(404).render('notfound', { message: 'Category not found' });
     }
     else{
-        res.status(200).send(category);
+        res.render('categories', {title: 'categories', message: null});
     }
 })
 
@@ -50,7 +50,7 @@ router.delete('/:id', async (req, res) => {
     const {id} = req.params;
     try{
         await prisma.category.delete({where: {id: Number(id)}});
-        res.status(200).send("deleted");
+        return res.render('categories', { message: 'deleted', title: 'Categories' });
     }
     catch (err){
         res.status(500).send(err.message);

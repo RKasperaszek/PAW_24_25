@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <title>Posts</title>
+</head>
+<body>
+<%- include('parts/nav');%>
+<h1 class="title">All Posts</h1>
+<ul class="posts" >
+    <% data.forEach(data => { %>
+        <li>
+            <a href="/posts/<%= data.id %>"><strong><%= data.title %></strong></a>
+        </li>
+    <% }); %>
+</ul>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <title><%= data.title %></title>
+</head>
+<body>
+<%- include('parts/nav');%>
+<div class="post">
+    <h1><%= data.title %></h1>
+    <h3><%= data.body %></h3>
+    <p><%= userData.username %></p>
+</div>
+<a id="back" href="/posts">Back to all posts</a>
+</body>
+</html>

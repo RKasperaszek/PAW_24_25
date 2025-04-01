@@ -30,6 +30,7 @@ const conn = mysql.createConnection({
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
   res.render('index', {title: 'Home'});
