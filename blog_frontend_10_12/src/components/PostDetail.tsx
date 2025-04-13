@@ -2,13 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 type Comment = { id: number, text: string };
 type Post = { id: number, title: string, body: string, comments: Comment[] };
 
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState<Post | null>(null);
-    const [newComment, setNewComment] = useState("");
+    const [comment, setComment] = useState("");
 
     const fetchPost = () => {
         axios.get(`http://localhost:3000/posts/${id}`).then(res => {
@@ -20,29 +21,41 @@ const PostDetail = () => {
         fetchPost();
     }, [id]);
 
-    const handleAddComment = async () => {
-        if (!newComment.trim()) return;
-        await axios.post(`http://localhost:3000/posts/${id}/comments`, { text: newComment });
-        setNewComment("");
-        fetchPost(); // Refresh comments
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await fetch(`http://localhost:3000/posts/${id}/comments`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: comment }),
+        });
+        setComment("");
+        fetchPost();
     };
+    {console.log(comment)}
 
     if (!post) return <div>Ładowanie...</div>;
 
     return (
-        <div>
+        <div className="post-container">
             <h2>{post.title}</h2>
             <p>{post.body}</p>
-            <h3>Komentarze</h3>
-            <ul>
-                {post.comments.map(c => <li key={c.id}>{c.text}</li>)}
-            </ul>
-            <input
-                value={newComment}
-                onChange={e => setNewComment(e.target.value)}
-                placeholder="Dodaj komentarz"
-            />
-            <button onClick={handleAddComment}>Dodaj</button>
+
+            <div className="comments-section">
+                <h3>Komentarze</h3>
+                <ul>
+                    {post.comments.map(c => <li key={c.id}>{c.text}</li>)}
+                </ul>
+                <form onSubmit={handleSubmit} className="comment-form">
+                    <textarea
+                        className="comment-input"
+                        value={comment}
+                        onChange={e => setComment(e.target.value)}
+                        placeholder="Dodaj komentarz"
+                    />
+                    <button type="submit" className="comment-button">Dodaj</button>
+                </form>
+
+            </div>
         </div>
     );
 };

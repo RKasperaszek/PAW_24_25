@@ -28,9 +28,16 @@ app.get("/posts/:id", (req, res) => {
 
 app.get("/posts/:id/comments", (req, res) => {
     const postId = parseInt(req.params.id);
-    const postComments = comments[postId];
-    if (!postComments) return res.status(404).send("Not found");
-    res.json(postComments);
+    const { content } = req.body;
+    if (!comments[postId]) {
+        comments[postId] = [];
+    }
+    const newComment = {
+        id: comments[postId].length + 1,
+        text: content,
+    };
+    comments[postId].push(newComment);
+    res.status(201).json(newComment);
 });
 
 app.listen(3000, () => console.log("Backend running on http://localhost:3000"));
