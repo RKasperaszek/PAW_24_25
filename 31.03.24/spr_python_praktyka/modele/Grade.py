@@ -2,7 +2,7 @@ from modele.Student import Student
 from modele.Subject import Subject
 
 __copyright__ = "Zespół Szkół Komunikacji"
-__author__ = "Wojciech Choroś 4D"
+__author__ = "Roksana Kasperaszek 4D"
 
 
 class Grade:
