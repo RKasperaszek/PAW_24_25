@@ -1,7 +1,7 @@
 from modele.Teacher import Teacher
 
 __copyright__ = "Zespół Szkół Komunikacji"
-__author__ = "Wojciech Choroś 4D"
+__author__ = "Roksana Kasperaszek 4D"
 
 
 class Subject:
